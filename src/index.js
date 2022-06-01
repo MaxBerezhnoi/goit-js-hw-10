@@ -17,6 +17,8 @@ import countryInfo from './templates/countryInfo.hbs';
 //-----------------------------------
 
 const DEBOUNCE_DELAY = 300;
+
+
 const refs = {
     countryInfo: document.querySelector(".country-info"),
     input: document.querySelector('#search-box'),
@@ -59,3 +61,5 @@ function fetchCountries(e) {
     }
 }
 
+const source = document.querySelector(".country-info").innerHTML;
+const template = Handlebars.compile(source);

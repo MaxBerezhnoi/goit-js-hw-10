@@ -20,7 +20,7 @@ const DEBOUNCE_DELAY = 300;
 
 
 const refs = {
-    countryInfo: document.querySelector(".country-info"),
+    countryInfoDiv: document.querySelector(".country-info"),
     input: document.querySelector('#search-box'),
 }
 
@@ -39,7 +39,7 @@ function fetchCountries(e) {
         return;
     }
     else {
-        let name = e.target.value;
+        let name = e.target.value.trim();
     
         console.log(name);
         return fetch(`https://restcountries.com/v3.1/name/${name}`)
@@ -49,17 +49,27 @@ function fetchCountries(e) {
             },
             )
             .then(countryFullInfo => {
-                console.log(countryFullInfo);
-                const markup = countryInfo(countryFullInfo);
-                console.log(markup);
-                refs.countryInfo.innerHTML = markup;
+                
+                if (countryFullInfo.length === 1) {
+                    console.log(countryFullInfo);
+                    const markup = countryInfo(countryFullInfo);
+                    console.log(markup);
+                    refs.countryInfoDiv.innerHTML = markup;
+                }
+                else if (countryFullInfo.length > 10) {
+                    console.log("Too match!");
+                    Notify.info("Too many matches found. Please enter a more specific name.");
+            }
+                else {
+                   Notify.failure("Oops, there is no country with that name"); 
+               } 
+                
             })
             .catch(error => {
                 console.log(error);
-                Notify.failure("Oops, there is no country with that name");
+                
             })
     }
 }
 
-const source = document.querySelector(".country-info").innerHTML;
-const template = Handlebars.compile(source);
+

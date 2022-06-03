@@ -1,7 +1,18 @@
 
-<h1><solid>Country:</solid>{{name.official}}</h1>
-<p><b>Capital:</bold>{{capital}}</p>
-<p><b>Population:</b>{{population}}</p>
-<img src="{{flags.svg}}" alt="{{name.common}}">
-<p><b>Languages:</b>{{languages}}</p>
+{{#each this}}
+  <h1><solid>Country:</solid>{{name.official}}</h1>
+  <p><b>Capital: </bold>{{capital}}</p>
+  <p><b>Population: </b>{{population}}</p>
+  <img src="{{flags.svg}}" width="80" alt="{{name.common}}">
+
+  <p>Languages:
+  {{#each languages}}
+  <b>{{this}}</b>
+  {{/each}}
+  </p>
+{{/each}}
+
+
+
+
 

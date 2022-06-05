@@ -46,9 +46,8 @@ function fetchCountries(e) {
         let name = e.target.value.trim();
     
         console.log(name);
-        return fetch(`https://restcountries.com/v3.1/name/${name}`
-            
-        )
+        return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
+        /*fetch(`https://restcountries.com/v3.1/name/${name}`)*/
             .then(response => {
                 return response.json();
             },

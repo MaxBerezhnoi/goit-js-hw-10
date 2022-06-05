@@ -62,7 +62,7 @@ function fetchCountries(e) {
                     refs.countryInfoDiv.innerHTML = markup;
                 }
                 else if (countryFullInfo.length <= 10) {
-                    
+                    refs.countryInfoDiv.innerHTML = "";
                     const markup = countryList(countryFullInfo);
                     refs.countryListUl.innerHTML = markup;
                 }

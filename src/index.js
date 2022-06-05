@@ -35,7 +35,9 @@ function clearCountriesBlock() {
     refs.countryInfoDiv.innerHTML = "";
 }
 function fetchCountries(e) {
-    if (refs.input.value === "") {
+
+    if (refs.input.value.trim() === "") {
+        console.log(refs.input.value);
         console.log("Let's start!");
         clearCountriesBlock();
         return;
